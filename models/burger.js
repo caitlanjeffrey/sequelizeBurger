@@ -1,34 +1,23 @@
-var orm = require("../config/orm");
+module.exports = function (sequelize, DataTypes) {
+    var Burger = sequelize.define("Burger", {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+    });
 
-var burger = {
-    all: function (cb) {
-        orm.all("burgers", function (res) {
-            console.log(res)
-            cb(res);
-        })
-    },
-    devoured: function (cb) {
-        orm.devouredBurgers("burgers", function (res) {
-            console.log(res)
-            cb(res);
-        })
-    },
-    add: function (cols, name, cb) {
-        orm.create("burgers", cols, name, function (res) {
-            cb(res)
-        })
-    },
-    update: function (devour, condition, cb) {
-        orm.update("burgers", devour, condition, function (res) {
-            cb(res);
-        })
-    },
-    delete: function (id, cb) {
-        console.log("burger Model ID: " + id)
-        orm.deleteOne(id, function (res) {
-            cb(res);
-        })
-    }
-}
+    // Burger.associate = function (models) {
+    //     // We're saying that a Burger should belong to an Author
+    //     // A Burger can't be created without an Author due to the foreign key constraint
+    //     Burger.belongsTo(models.Customer, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
-module.exports = burger;
+    return Burger;
+};

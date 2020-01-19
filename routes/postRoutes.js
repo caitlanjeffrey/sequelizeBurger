@@ -12,11 +12,11 @@ var db = require("../models");
 // =============================================================
 module.exports = function (app) {
 
-    // GET route for getting all of the Burgers
+    // GET route for getting all of the posts
     app.get("/api/burger", function (req, res) {
         var query = {};
-        if (req.query.burger_name) {
-            query.AuthorId = req.query.burger_name;
+        if (req.query.burger_id) {
+            query.BurgerId = req.query.burger_id;
         }
         db.Burger.findAll({
             where: query
@@ -25,46 +25,46 @@ module.exports = function (app) {
         });
     });
 
-    // Get route for retrieving a single Burger
+    // Get route for retrieving a single post
     app.get("/api/burger/:id", function (req, res) {
-        db.Burger.findOne({
+        db.Post.findOne({
             where: {
                 id: req.params.id
             }
-        }).then(function (dbBurger) {
-            console.log(dbBurger);
-            res.json(dbBurger);
+        }).then(function (dbPost) {
+            console.log(dbPost);
+            res.json(dbPost);
         });
     });
 
-    // Burger route for saving a new Burger
+    // POST route for saving a new post
     app.post("/api/burger", function (req, res) {
-        db.Burger.create(req.body).then(function (dbBurger) {
-            res.json(dbBurger);
+        db.Post.create(req.body).then(function (dbPost) {
+            res.json(dbPost);
         });
     });
 
-    // DELETE route for deleting Burgers
+    // DELETE route for deleting posts
     app.delete("/api/burger/:id", function (req, res) {
-        db.Burger.destroy({
+        db.Post.destroy({
             where: {
                 id: req.params.id
             }
-        }).then(function (dbBurger) {
-            res.json(dbBurger);
+        }).then(function (dbPost) {
+            res.json(dbPost);
         });
     });
 
-    // PUT route for updating Burgers
+    // PUT route for updating posts
     app.put("/api/burger", function (req, res) {
-        db.Burger.update(
+        db.Post.update(
             req.body,
             {
                 where: {
                     id: req.body.id
                 }
-            }).then(function (dbBurger) {
-                res.json(dbBurger);
+            }).then(function (dbPost) {
+                res.json(dbPost);
             });
     });
 };
