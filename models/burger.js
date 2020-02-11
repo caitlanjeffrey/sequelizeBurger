@@ -9,15 +9,15 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
-    // Burger.associate = function (models) {
-    //     // We're saying that a Burger should belong to an Author
-    //     // A Burger can't be created without an Author due to the foreign key constraint
-    //     Burger.belongsTo(models.Customer, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+    Burger.associate = function (models) {
+        // We're saying that a Burger should belong to an Author
+        // A Burger can't be created without an Author due to the foreign key constraint
+        Burger.belongsTo(models.Customer, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
     return Burger;
 };

@@ -16,11 +16,13 @@ Welcome to 'Eat-Da-Burger' Restaurant! We serve Cheeseburgers, Hamburgers and ev
     * Express
     * Express Handlebars
     * MySQL
+    * Sequelize
 
 # NPM Packages(REQUIRED):
     * Express
     * Express Handlebars
     * MySQL
+    * Sequelize
 
 # How to Run EAT-DA-BURGER:
 
